@@ -24,15 +24,8 @@ steps:
     npm run build
   displayName: 'npm install and build'
 
-- task: CopyFiles@2
-  displayName: 'Copy dest folder'
-  inputs:
-    SourceFolder: 'dest'
-    Contents: '**'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
-
 - task: PublishPipelineArtifact@1
   inputs:
-    targetPath: '$(Build.ArtifactStagingDirectory)'
+    targetPath: '$(System.DefaultWorkingDirectory)'
     artifact: 'drop'
     publishLocation: 'pipeline'
