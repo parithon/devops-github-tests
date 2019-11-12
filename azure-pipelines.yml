@@ -24,29 +24,11 @@ steps:
     npm run build
   displayName: 'npm install and build'
 
-- script: |
-    npm ci --only=production
-  displayName: 'Install only release packages'
-
-- task: CopyFiles@2
-  displayName: 'Copy node_modules folder'
-  inputs:
-    SourceFolder: 'node_modules'
-    Contents: '**'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
-
 - task: CopyFiles@2
   displayName: 'Copy dest folder'
   inputs:
     SourceFolder: 'dest'
     Contents: '**'
-    TargetFolder: '$(Build.ArtifactStagingDirectory)'
-
-- task: CopyFiles@2
-  displayName: 'Copy package files'
-  inputs:
-    SourceFolder: '.'
-    Contents: 'package*.json'
     TargetFolder: '$(Build.ArtifactStagingDirectory)'
 
 - task: PublishPipelineArtifact@1
