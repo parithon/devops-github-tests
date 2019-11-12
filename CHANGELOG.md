@@ -25,7 +25,7 @@ Changes for version 5
 
 Changes 1
 
-[v0.0.6]: https://github.com/parithon/devops-github-tests/compare/v0.0.6...v0.0.5
-[v0.0.5]: https://github.com/parithon/devops-github-tests/compare/v0.0.5...v0.0.1
+[v0.0.6]: https://github.com/parithon/devops-github-tests/compare/v0.0.5...v0.0.6
+[v0.0.5]: https://github.com/parithon/devops-github-tests/compare/v0.0.1...v0.0.5
 [v0.0.1]: https://github.com/parithon/devops-github-tests/compare/80e890c5c0b9ef74c25944cbe2bd5d4725d40bed...v0.0.1
 [Released]: https://github.com/parithon/devops-github-tests/releases
