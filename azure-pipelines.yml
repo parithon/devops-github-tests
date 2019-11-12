@@ -24,8 +24,26 @@ steps:
     npm run build
   displayName: 'npm install and build'
 
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: 'node_modules'
+    Contents: '**'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: 'dest'
+    Contents: '**'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '.'
+    Contents: 'package*.json'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
 - task: PublishPipelineArtifact@1
   inputs:
-    targetPath: '$(Pipeline.Workspace)'
+    targetPath: '$(Build.ArtifactStagingDirectory)'
     artifact: 'drop'
     publishLocation: 'pipeline'
