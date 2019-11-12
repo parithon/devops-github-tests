@@ -1,0 +1,18 @@
+{
+  "name": "devops-github-tests",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dest/index.js",
+  "scripts": {
+    "start": "node dest/index.js",
+    "build": "tsc -p .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "parithon",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^12.12.7",
+    "typescript": "^3.7.2"
+  }
+}
