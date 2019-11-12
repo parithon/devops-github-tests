@@ -25,6 +25,7 @@ steps:
   displayName: 'npm install and build'
 
 - task: PowerShell@2
+  displayName: "Generate release notes"
   inputs:
     targetType: 'inline'
     script: 'New-Item -Type Directory releasenotes; Get-Content CHANGELOG.md -Delimiter ''# '' | Select-String -List -Pattern "v\d*.\d*.\d" | Select -First 1 | %{ $_.ToString().Trim() | Out-File -FilePath releasenotes/RELEASE-$($_.Matches).md }'
