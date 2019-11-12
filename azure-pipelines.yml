@@ -28,7 +28,15 @@ steps:
   displayName: "Generate release notes"
   inputs:
     targetType: 'inline'
-    script: 'New-Item -Type Directory releasenotes; Get-Content CHANGELOG.md -Delimiter ''# '' | Select-String -List -Pattern "v\d*.\d*.\d" | Select -First 1 | %{ $_.ToString().Trim() | Out-File -FilePath releasenotes/RELEASE-$($_.Matches).md }'
+    script: '
+      New-Item -Type Directory -Path releasenotes -Force | Out-Null;
+      $pattern = "\[v\d+\.\d+\.\d+\]";
+      $content = Get-Content -Path ./CHANGELOG.md;
+      $startLine = $content | Select-String -Pattern $pattern | Select -First 1 -ExpandProperty LineNumber;
+      $endLine = $content | Select-String -Pattern $pattern | Select -Skip 1 -First 1 -ExpandProperty LineNumber;
+      $postfix = $content | Select-Object -Skip ($startLine - 1) -First 1 | Select-String -Pattern "v\d+\.\d+\.\d+";
+      $content | Select-Object -Index (($startLine + 1)..($endLine - 2)) | Out-File -FilePath "releasenotes/RELEASE-$($postfix.Matches.Value).md";
+    '
     pwsh: true
 
 - task: PublishPipelineArtifact@1
